@@ -1,13 +1,56 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
+app.use(cors());
+
+const Clothes = require('./models/clothes.js');
+const seedClothes = require('./models/seedClothes.js');
 
 let PORT = 3000
 if(process.env.PORT){
     PORT = process.env.PORT
 }
+
+// ======= SEED ROUTES =============
+app.get('/boutique/seed', (req, res) => {
+    Clothes.create(seedClothes, (err, data) => {
+        res.send(data)
+    })
+})
+// ============= other routes =============
+
+
+// create
+app.post('/boutique', (req, res) => {
+    Clothes.create(req.body, (err, createClothes) => {
+        res.json(createClothes)
+    })
+})
+
+// get
+app.get('/boutique', (req, res) => {
+    Clothes.find({}, (err, foundClothes) => {
+        res.json(foundClothes)
+    })
+})
+
+// delete
+app.delete('/boutique/:id', (req, res) => {
+    Clothes.findByIdAndRemove(req.params.id, (err, deleteClothes) => {
+        res.json(deleteClothes)
+    })
+})
+
+// update
+app.put('/boutique/:id', (req, res) => {
+    Clothes.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updateClothes) => {
+        res.json(updateClothes)
+    })
+})
+
 
 
 
@@ -17,6 +60,6 @@ app.listen(PORT, (req, res) => {
     console.log('listening on port 3000')
 })
 
-mongoose.connect('mongodb+srv://rphm95:R160589867@sei.7r3v4df.mongodb.net/?retryWrites=true&w=majority', () => {
+mongoose.connect('mongodb+srv://laboutique2:XGbGa0dShMo4ydPq@boutique.h7t4mgj.mongodb.net/?retryWrites=true&w=majority', () => {
     console.log('connected to mongo')
 })
