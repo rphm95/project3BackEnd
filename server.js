@@ -1,10 +1,23 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-
+const sessionsController = require('./controllers/sessions.js');
+const userController = require('./controllers/users.js');
+const session = require('express-session');
+require('dotenv').config();
 const app = express();
+
+
 app.use(express.json());
 app.use(cors());
+app.use(express.urlencoded({extended:true}));
+app.use(session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false
+}));
+app.use('/users', userController);
+app.use('/sessions', sessionsController);
 
 const Clothes = require('./models/clothes.js');
 const seedClothes = require('./models/seedClothes.js');
