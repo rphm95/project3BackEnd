@@ -32,6 +32,10 @@ if(process.env.PORT){
     PORT = process.env.PORT
 }
 
+const accessoriesController = require('./controllers/accessories.js');
+app.use(accessoriesController)
+
+
 // ======= SEED ROUTES =============
 app.get('/boutique/seed', (req, res) => {
     Clothes.create(seedClothes, (err, data) => {
