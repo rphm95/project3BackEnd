@@ -33,7 +33,7 @@ app.get('/boutique/seed', (req, res) => {
         res.send(data)
     })
 })
-// ============= other routes =============
+// ============= other routes clothes =============
 
 
 // create
