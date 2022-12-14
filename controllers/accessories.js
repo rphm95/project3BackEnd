@@ -14,21 +14,21 @@ router.post('/accessories', (req, res) => {
 
 // get
 router.get('/accessories', (req, res) => {
-    Accessories.findOne({}, (err, foundAccessories) => {
+    Accessories.find({}, (err, foundAccessories) => {
         res.json(foundAccessories)
     })
 })
 
 // delete
 router.delete('/accessories/:id', (req, res) => {
-    Accessories.findByIdAndRemove(req.paramas.id, (err, deleteAccessories) => {
+    Accessories.findByIdAndRemove(req.params.id, (err, deleteAccessories) => {
         res.json(deleteAccessories)
     })
 });
 
 // update 
 router.put('/accessories/:id', (req, res) => {
-    Accessories.findByIdAndUpdate(req.paramas.id, req.body, {new:true}, (err, updateAccessories) => {
+    Accessories.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updateAccessories) => {
         res.json(updateAccessories)
     });
 })
