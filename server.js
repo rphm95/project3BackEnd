@@ -11,7 +11,8 @@ const app = express();
 app.use(express.json());
 app.use(cors(
     {
-        origin:'https://glittering-paletas-4673fa.netlify.app',
+        // origin:'https://glittering-paletas-4673fa.netlify.app',
+        origin:'http://localhost:3001',
         credentials:true
     }
 ));
