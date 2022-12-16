@@ -1,8 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const sessionsController = require('./controllers/sessions.js');
-const userController = require('./controllers/users.js');
 const session = require('express-session');
 require('dotenv').config();
 const app = express();
@@ -21,6 +19,9 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+
+const sessionsController = require('./controllers/sessions.js');
+const userController = require('./controllers/users.js');
 app.use('/users', userController);
 app.use('/sessions', sessionsController);
 
