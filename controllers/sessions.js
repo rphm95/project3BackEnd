@@ -31,8 +31,8 @@ sessions.post('/userLogin', (req, res) => {
 });
 
 sessions.delete('/', (req, res) => {
-    req.session.destroy(() => {
-        // res.json(user)
+    req.session.destroy((user) => {
+        res.json(user)
     })
 });
 
