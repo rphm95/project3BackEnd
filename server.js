@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(cors(
     {
-        origin:'https://quiet-cove-66596.herokuapp.com/',
+        origin:'https://glittering-paletas-4673fa.netlify.app/',
         credentials:true
     }
 ));
