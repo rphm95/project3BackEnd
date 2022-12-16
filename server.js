@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(cors(
     {
-        origin:'https://powerful-sierra-23754.herokuapp.com',
+        origin:'http://localhost:3001',
         credentials:true
     }
 ));
