@@ -5,15 +5,11 @@ const session = require('express-session');
 require('dotenv').config();
 const app = express();
 
-const userController = require('./controllers/users.js');
-app.use('/users', userController);
-const sessionsController = require('./controllers/sessions.js');
-app.use('/sessions', sessionsController);
 
 app.use(express.json());
 app.use(cors(
     {
-        origin:'http://powerful-sierra-23754.herokuapp.com',
+        origin:'https://powerful-sierra-23754.herokuapp.com',
         credentials:true
     }
 ));
@@ -23,6 +19,11 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+
+const userController = require('./controllers/users.js');
+app.use('/users', userController);
+const sessionsController = require('./controllers/sessions.js');
+app.use('/sessions', sessionsController);
 
 const Clothes = require('./models/clothes.js');
 const seedClothes = require('./models/seedClothes.js');
