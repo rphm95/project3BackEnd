@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(cors(
     {
-        origin:'https://glittering-paletas-4673fa.netlify.app',
+        origin:'https://powerful-sierra-23754.herokuapp.com',
         credentials:true
     }
 ));
