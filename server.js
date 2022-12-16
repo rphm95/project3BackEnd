@@ -7,18 +7,26 @@ const app = express();
 
 
 app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 app.use(cors(
     {
-        origin:'http://localhost:3001',
+        origin:'https://powerful-sierra-23754.herokuapp.com',
         credentials:true
     }
 ));
-// app.use(express.urlencoded({extended:true}));
+app.set('trust proxy',1)
 app.use(session({
-    secret: process.env.SECRET,
+    secret: 'seymour',
     resave: false,
-    saveUninitialized: false
-}));
+    saveUninitialized: false,
+    cookie:{sameSite:'none',secure:true}
+}))
+// app.use(express.urlencoded({extended:true}));
+// app.use(session({
+//     secret: process.env.SECRET,
+//     resave: false,
+//     saveUninitialized: false
+// }));
 
 const userController = require('./controllers/users.js');
 app.use('/users', userController);
