@@ -5,6 +5,10 @@ const session = require('express-session');
 require('dotenv').config();
 const app = express();
 
+const userController = require('./controllers/users.js');
+app.use('/users', userController);
+const sessionsController = require('./controllers/sessions.js');
+app.use('/sessions', sessionsController);
 
 app.use(express.json());
 app.use(cors(
@@ -19,11 +23,6 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
-
-const sessionsController = require('./controllers/sessions.js');
-const userController = require('./controllers/users.js');
-app.use('/users', userController);
-app.use('/sessions', sessionsController);
 
 const Clothes = require('./models/clothes.js');
 const seedClothes = require('./models/seedClothes.js');
