@@ -15,7 +15,7 @@ app.use(cors(
         credentials:true
     }
 ));
-app.use(express.urlencoded({extended:true}));
+// app.use(express.urlencoded({extended:true}));
 app.use(session({
     secret: process.env.SECRET,
     resave: false,
